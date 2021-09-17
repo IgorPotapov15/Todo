@@ -6,6 +6,16 @@ let tempArray = [];
 
 function App() {
   const [items, setItems] = useState([]);
+  const [doneCounter, setDoneCounter] = useState(0);
+  const [undoneCounter, setUndoneCounter] = useState(0);
+
+  useEffect(() => {
+    let doneArray = items.filter((item) => item.done === true)
+    let undoneArray = items.filter((item) => item.done === false)
+    setDoneCounter(doneArray.length)
+    setUndoneCounter(undoneArray.length)
+    console.log(doneCounter, undoneCounter)
+  }, [items])
 
   const addItem = (value) => {
     if (value) {
@@ -16,7 +26,6 @@ function App() {
       }
       tempArray.push(newItem);
       setItems([...tempArray])
-      console.log(items)
     }
   }
 
@@ -31,6 +40,8 @@ function App() {
       <TodoForm
         addItem={addItem}
       />
+      Done: {doneCounter}<br/>
+      Undone: {undoneCounter}
       <ul>
         {items.map((item) => (
           <TodoItem
