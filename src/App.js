@@ -1,21 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import TodoForm from './Todo-form';
 import TodoItem from './Todo-item';
+import TodoFilter from './Todo-filter';
 import { v4 as uuidv4 } from 'uuid';
-let tempArray = [];
+let mainArray = [];
 
 function App() {
   const [items, setItems] = useState([]);
+  const [filtered, setFiltered] = useState([]);
   const [doneCounter, setDoneCounter] = useState(0);
   const [undoneCounter, setUndoneCounter] = useState(0);
 
   useEffect(() => {
-    let doneArray = items.filter((item) => item.done === true)
-    let undoneArray = items.filter((item) => item.done === false)
+    renewCounters();
+  }, [items])
+
+  useEffect(() => {
+    if (localStorage.getItem('todo')) {
+      mainArray = JSON.parse(localStorage.getItem("todo"));
+      setItems([...mainArray])
+      setFiltered([...mainArray])
+    }
+  }, [])
+
+  const renewLocalStorage = () => {
+    localStorage.setItem('todo', JSON.stringify(mainArray))
+  }
+
+  const renewCounters = () => {
+    let doneArray = mainArray.filter((item) => item.done === true)
+    let undoneArray = mainArray.filter((item) => item.done === false)
     setDoneCounter(doneArray.length)
     setUndoneCounter(undoneArray.length)
-    console.log(doneCounter, undoneCounter)
-  }, [items])
+  }
 
   const addItem = (value) => {
     if (value) {
@@ -24,21 +41,41 @@ function App() {
         value: value,
         done: false
       }
-      tempArray.push(newItem);
-      setItems([...tempArray])
+      mainArray.push(newItem);
+      setItems([...mainArray]);
     }
+    renewLocalStorage()
   }
 
   const checkItem = (id) => {
-    const arrAfterCheck = items.map((item) => item.id === id ? {...item, done: !item.done} : {...item})
-    tempArray = [...arrAfterCheck]
+    const arrAfterCheck = mainArray.map((item) => item.id === id ? {...item, done: !item.done} : {...item})
+    mainArray = [...arrAfterCheck]
     setItems([...arrAfterCheck])
+    renewLocalStorage()
   }
 
   const removeItem = (id) => {
-    const arrAfterRemove = items.filter((item) => item.id !== id);
-    tempArray = [...arrAfterRemove]
+    const arrAfterRemove = mainArray.filter((item) => item.id !== id);
+    mainArray = [...arrAfterRemove]
     setItems([...arrAfterRemove])
+    renewLocalStorage()
+  }
+
+  const filterItems = (status) => {
+    let filteredArray;
+    switch (status) {
+      case 'all':
+        setItems(mainArray);
+        break;
+      case 'done':
+        filteredArray = mainArray.filter((item) => item.done === true)
+        setItems([...filteredArray]);
+        break;
+      case 'undone':
+        filteredArray = mainArray.filter((item) => item.done === false)
+        setItems([...filteredArray])
+        break;
+    }
   }
 
   return (
@@ -48,6 +85,9 @@ function App() {
       />
       Done: {doneCounter}<br/>
       Undone: {undoneCounter}
+      <TodoFilter
+        filterItems={filterItems}
+      />
       <ul>
         {items.map((item) => (
           <TodoItem
