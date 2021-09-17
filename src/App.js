@@ -29,6 +29,12 @@ function App() {
     }
   }
 
+  const checkItem = (id) => {
+    const arrAfterCheck = items.map((item) => item.id === id ? {...item, done: !item.done} : {...item})
+    tempArray = [...arrAfterCheck]
+    setItems([...arrAfterCheck])
+  }
+
   const removeItem = (id) => {
     const arrAfterRemove = items.filter((item) => item.id !== id);
     tempArray = [...arrAfterRemove]
@@ -46,7 +52,8 @@ function App() {
         {items.map((item) => (
           <TodoItem
             item={item}
-            removeItem={removeItem}          
+            removeItem={removeItem} 
+            checkItem={checkItem}         
           />
         ))}
       </ul>
