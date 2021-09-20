@@ -2,13 +2,22 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectAllItems, selectDone, selectUndone } from '../redux/selector'
 import { changeSelector } from './TodoList'
+import { changeFilter } from '../redux/todoSlice'
 
-const FilterItems = ({ setSelector }) => {
+const FilterItems = () => {
+  const dispatch = useDispatch()
+
+  const handleChange = (type) => {
+    dispatch(
+      changeFilter({ filter: type })
+    )
+  }
+
   return (
     <div>
-      <button>All</button>
-      <button>Done</button>
-      <button>Undone</button>
+      <button onClick={handleChange('ALL')}>All</button>
+      <button onClick={handleChange('DONE')}>Done</button>
+      <button onClick={handleChange('UNDONE')}>Undone</button>
     </div>
   )
 }
