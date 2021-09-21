@@ -172,6 +172,10 @@ button:disabled {
   cursor: pointer;
 }
 
+.counter {
+  padding: 20px 0;
+}
+
 @media (max-width: 768px) {
   .main-heading {
     margin: 100px 0 30px;
@@ -224,6 +228,7 @@ button:disabled {
   }
 
   .form-input {
+    height: 40px;
     margin-bottom: 10px;
   }
 
