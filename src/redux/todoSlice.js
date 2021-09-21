@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, current } from "@reduxjs/toolkit"
 import { v4 as uuidv4 } from 'uuid'
 
 const initialState = {
@@ -18,6 +18,8 @@ export const todoSlice = createSlice({
         completed: false,
       }
       state.items.push(todo)
+      console.log(current(state), action);
+
     },
 
     toggleComplete: (state, action) => {
@@ -26,7 +28,10 @@ export const todoSlice = createSlice({
     },
 
     deleteTodo: (state, action) => {
-      return state.items.filter((todo) => todo.id !== action.payload.id)
+      const items = current(state.items);
+      const updatedItems = items.filter((todo) => todo.id !== action.payload.id)
+      console.log(updatedItems, action.payload.id);
+      state.items = updatedItems;
     },
 
     changeFilter: (state, action) => {
