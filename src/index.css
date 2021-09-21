@@ -217,6 +217,7 @@ button:disabled {
 
 @media (max-width: 375px) {
   .main-heading {
+    margin-top: 50px;
     font-size: 40px;
   }
 
