@@ -16,13 +16,3 @@ export const getVisibleItems = createSelector(
     }
   }
 )
-
-// export const selectDone = createSelector(
-//   selectAll,
-//   allItems => allItems.filter(item => item.completed === true)
-// )
-
-// export const selectUndone = createSelector(
-//   selectAll,
-//   allItems => allItems.filter(item => item.completed === false)
-// )

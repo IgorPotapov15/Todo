@@ -18,8 +18,6 @@ export const todoSlice = createSlice({
         completed: false,
       }
       state.items.push(todo)
-      console.log(current(state), action);
-
     },
 
     toggleComplete: (state, action) => {
@@ -30,7 +28,6 @@ export const todoSlice = createSlice({
     deleteTodo: (state, action) => {
       const items = current(state.items);
       const updatedItems = items.filter((todo) => todo.id !== action.payload.id)
-      console.log(updatedItems, action.payload.id);
       state.items = updatedItems;
     },
 

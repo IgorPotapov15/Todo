@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
 import AddTodoForm from './components/AddTodoForm';
 import TodoList from './components/TodoList';
 import CounterItems from './components/CounterItems';
-import { useSelector } from 'react-redux'
 import FilterItems from './components/FilterItems';
-import { selectAllItems, selectDone, selectUndone } from './redux/selector'
 
 const App = () => {
 

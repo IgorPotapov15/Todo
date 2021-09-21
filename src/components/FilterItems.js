@@ -1,9 +1,5 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { selectAllItems, selectDone, selectUndone } from '../redux/selector'
-import { changeSelector } from './TodoList'
+import { useDispatch } from 'react-redux'
 import { changeFilter } from '../redux/todoSlice'
-import store from '../redux/store'
 
 const FilterItems = () => {
   const dispatch = useDispatch()
@@ -12,7 +8,6 @@ const FilterItems = () => {
     dispatch(
       changeFilter({ filter: type })
     )
-    // console.log(store.getState().todos.filter)
   }
 
   return (
