@@ -19,13 +19,20 @@ const AddTodoForm = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form 
+      onSubmit={onSubmit}
+      className="form"
+    >
       <input 
         type="text"
         value={value}
         onChange={(event) => setValue(event.target.value)}
+        className="form-input"
       />
-      <button type='submit'>
+      <button
+        type='submit'
+        className="form-button"
+      >
 				Submit
 			</button>
     </form>

@@ -6,7 +6,7 @@ const TodoList = () => {
   let allItems = useSelector(getVisibleItems)
 
   return (
-    <ul>
+    <ul className="items-list">
       {allItems.map((todo) => (
         <TodoItem 
           key={todo.id}

@@ -16,18 +16,24 @@ const TodoItem = ({ id, title, completed }) => {
   }
 
   return (
-    <li>
+    <li className="item">
+      <p className="item-text">
       {title}
-      <input 
-        type="checkbox"
-        checked={completed}
-        onChange={handleCheckboxClick} 
-      />
-      <button
-        onClick={handleDeleteClick}
-      >
-        [X]
-      </button>
+      </p>
+      <div className="item-tools">
+        <input 
+          type="checkbox"
+          checked={completed}
+          onChange={handleCheckboxClick} 
+          className={completed ? "item-checkbox done" : "item-checkbox"}
+        />
+        <button
+          onClick={handleDeleteClick}
+          className="item-delete"
+        >
+          <i className="far fa-trash-alt"></i>
+        </button>
+      </div>
     </li>
   )
 }

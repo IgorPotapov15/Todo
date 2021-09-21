@@ -4,7 +4,7 @@ const getItems = state => state.todos.items
 const getFilter = state => state.todos.filter
 
 export const getVisibleItems = createSelector(
-  [ getFilter, getItems ],
+  [getFilter, getItems],
   (filter, items) => {
     switch (filter) {
       case 'ALL':

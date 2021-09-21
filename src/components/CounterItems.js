@@ -6,7 +6,7 @@ const CounterItems = () => {
   )
 
   return (
-    <h4>
+    <h4 className="counter">
       Total Completed: {completedTodos.length}
     </h4>
   )

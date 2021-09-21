@@ -11,10 +11,10 @@ const FilterItems = () => {
   }
 
   return (
-    <div>
-      <button onClick={() => handleChange('ALL')}>All</button>
-      <button onClick={() => handleChange('DONE')}>Done</button>
-      <button onClick={() => handleChange('UNDONE')}>Undone</button>
+    <div className="filter">
+      <button onClick={() => handleChange('ALL')} className="filter-button">All</button>
+      <button onClick={() => handleChange('DONE')} className="filter-button">Done</button>
+      <button onClick={() => handleChange('UNDONE')} className="filter-button">Undone</button>
     </div>
   )
 }
