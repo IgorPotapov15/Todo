@@ -56,11 +56,11 @@ button {
 }
 
 button:hover {
-  background: rgb(218, 218, 218);
+  background: rgb(242, 223, 199);
 }
 
 button:disabled {
-  border-color: #cccccc;
+  border-color: #0000003c;
 }
 
 .form-button {
