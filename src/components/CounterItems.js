@@ -5,9 +5,14 @@ const CounterItems = () => {
     state.todos.items.filter((todo) => todo.completed === true)
   )
 
+  const uncompletedTodo = useSelector((state) =>
+    state.todos.items.filter((todo) => todo.completed === false)
+  )
+
   return (
     <h4 className="counter">
-      Total Completed: {completedTodos.length}
+      <p>Total Completed: {completedTodos.length}</p>
+      <p>Total Uncompleted: {uncompletedTodo.length}</p>
     </h4>
   )
 }
